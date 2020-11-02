@@ -4,25 +4,28 @@ import { useStore } from '../hooks';
 import { widgets } from '../widgets/antd';
 import IdInput from '../widgets/antd/idInput';
 import PercentSlider from '../widgets/antd/percentSlider';
-import { defaultSettings, commonSettings } from '../Settings';
+import { defaultSettings, defaultCommonSettings } from '../Settings';
 import { getWidgetName } from '../mapping';
 import { getKeyFromUniqueId } from '../utils';
 
-let widgetList = [];
-defaultSettings.forEach(setting => {
-  // TODO: 这里要判断一下否则会crash
-  const _widgets = setting.widgets;
-  const basicWidgets = _widgets
-    .filter(item => item.widget)
-    .map(b => ({ ...b, setting: { ...commonSettings, ...b.setting } }));
-  widgetList = [...widgetList, ...basicWidgets];
-});
-
 export default function ItemSettings() {
-  const { selected, flatten, onItemChange } = useStore();
-
+  const { selected, flatten, onItemChange, userProps = {} } = useStore();
+  const { settings, commonSettings } = userProps;
   let settingSchema = {};
   let settingData = {};
+
+  const getWidgetList = (settings, commonSettings) => {
+    let widgetList = [];
+    settings.forEach(setting => {
+      // TODO: 这里要判断一下否则会crash
+      const _widgets = setting.widgets;
+      const basicWidgets = _widgets
+        .filter(item => item.widget)
+        .map(b => ({ ...b, setting: { ...commonSettings, ...b.setting } }));
+      widgetList = [...widgetList, ...basicWidgets];
+    });
+    return widgetList;
+  };
 
   const onDataChange = newSchema => {
     if (selected) {
@@ -36,6 +39,13 @@ export default function ItemSettings() {
       }
     }
   };
+
+  // 算widgetList
+  const _settings = Array.isArray(settings) ? settings : defaultSettings;
+  const _commonSettings = Array.isArray(commonSettings)
+    ? commonSettings
+    : defaultCommonSettings;
+  const widgetList = getWidgetList(_settings, _commonSettings);
 
   // setting该显示什么的计算，要把选中组件的schema和它对应的widgets的整体schema进行拼接
   let itemSelected;

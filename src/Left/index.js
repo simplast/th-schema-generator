@@ -1,15 +1,19 @@
 import React, { useEffect } from 'react';
 import { defaultSettings } from '../Settings';
+import { useStore } from '../hooks';
 import './index.css';
 import Element from './Element';
 
 const Left = ({ saveList, setSaveList, ...rest }) => {
+  const { userProps = {} } = useStore();
+  const { settings } = userProps;
+  const _settings = Array.isArray(settings) ? settings : defaultSettings;
   useEffect(() => {}, []); // eslint-disable-line
 
   return (
     <div className="left-layout w5-l w4">
-      {Array.isArray(defaultSettings) ? (
-        defaultSettings.map((item, idx) => {
+      {Array.isArray(_settings) ? (
+        _settings.map((item, idx) => {
           return (
             <div key={idx}>
               <p className="f6 b">{item.title}</p>

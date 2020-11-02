@@ -1,5 +1,5 @@
 // 只需写配置，方便可扩展
-export const commonSettings = {
+export const defaultCommonSettings = {
   $id: {
     title: 'ID',
     description: '数据存储的名称，请写英文，不能为空',
@@ -503,8 +503,3 @@ export const defaultSettings = [
     widgets: saves,
   },
 ];
-
-// result = result.map(item => ({
-//   ...item,
-//   widgets: { ...commonSettings, ...item.setting },
-// }));
