@@ -21,9 +21,7 @@ const Left = ({ saveList, setSaveList, ...rest }) => {
                 {Array.isArray(item.widgets) ? (
                   item.widgets.map((widget, idx) => {
                     return (
-                      <li key={idx.toString()} className="left-item">
-                        <Element {...widget} {...rest} key={idx.toString()} />
-                      </li>
+                      <Element key={idx.toString()} {...widget} {...rest} />
                     );
                   })
                 ) : (
