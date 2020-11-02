@@ -4,7 +4,7 @@ import { useGlobalProps, useStore } from '../hooks';
 import { widgets } from '../widgets/antd';
 import IdInput from '../widgets/antd/idInput';
 import PercentSlider from '../widgets/antd/percentSlider';
-import ALL from '../Left/elementList';
+import ALL from '../Settings';
 import { getWidgetName } from '../mapping';
 import { getKeyFromUniqueId } from '../utils';
 
