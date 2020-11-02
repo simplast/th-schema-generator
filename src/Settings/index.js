@@ -2,7 +2,7 @@
 export const defaultCommonSettings = {
   $id: {
     title: 'ID',
-    description: '数据存储的名称，请写英文，不能为空',
+    description: '数据存储的名称/英文/必填',
     type: 'string',
     'ui:widget': 'idInput',
   },
@@ -177,7 +177,7 @@ const elements = [
     },
     setting: {
       default: {
-        title: '默认是否',
+        title: '是否默认勾选',
         type: 'boolean',
       },
     },
@@ -193,7 +193,7 @@ const elements = [
     },
     setting: {
       default: {
-        title: '默认是否',
+        title: '是否默认开启',
         type: 'boolean',
       },
     },

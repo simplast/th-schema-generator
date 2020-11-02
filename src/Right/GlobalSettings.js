@@ -18,10 +18,9 @@ export default function ItemSettings() {
         schema={SCHEMA}
         formData={frProps}
         onChange={onDataChange}
-        displayType="row"
-        showDescIcon
         widgets={widgets}
         preview={true}
+        frProps={{ displayType: 'column', showDescIcon: true }}
       />
     </div>
   );
