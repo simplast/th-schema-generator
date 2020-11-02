@@ -1,17 +1,14 @@
 import { useReducer, useContext, useRef, useEffect, useState } from 'react';
-import { Ctx, InnerCtx, PropsCtx } from './context';
+import { Ctx, StoreCtx } from './context';
 
 // 使用最顶层组件的 setState
 export const useGlobal = () => {
   return useContext(Ctx);
 };
 
-export const useGlobalProps = () => {
-  return useContext(PropsCtx);
-};
-
+// 组件最顶层传入的所有props
 export const useStore = () => {
-  return useContext(InnerCtx);
+  return useContext(StoreCtx);
 };
 
 // const logger = reducer => {

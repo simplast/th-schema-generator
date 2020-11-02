@@ -1,5 +1,5 @@
 import React from 'react';
-import { useGlobalProps, useStore } from '../hooks';
+import { useStore } from '../hooks';
 import { isLooselyNumber, isCssLength, getParentProps } from '../utils';
 import { getWidgetName } from '../mapping';
 
@@ -11,16 +11,17 @@ const RenderField = ({
   isComplex,
   children,
 }) => {
-  const { onItemChange, flatten } = useStore();
   const { schema, data } = item;
   const {
+    onItemChange,
+    flatten,
     displayType,
     showDescIcon,
     showValidate,
     labelWidth,
     widgets,
     mapping,
-  } = useGlobalProps();
+  } = useStore();
   const { type, title, description, required } = schema;
   const isRequired = required && required.length > 0;
 

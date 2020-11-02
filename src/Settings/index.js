@@ -1,5 +1,5 @@
 // 只需写配置，方便可扩展
-const commonSettings = {
+export const commonSettings = {
   $id: {
     title: 'ID',
     description: '数据存储的名称，请写英文，不能为空',
@@ -184,7 +184,7 @@ const elements = [
   },
   {
     text: '是否switch',
-    name: 'checkbox',
+    name: 'switch',
     widget: 'switch',
     schema: {
       title: '是否选择',
@@ -485,13 +485,26 @@ const saves = [
   },
 ];
 
-let result = [elements, advancedElements, layouts, saves];
+export const defaultSettings = [
+  {
+    title: '基础组件',
+    widgets: elements,
+  },
+  {
+    title: '高级组件',
+    widgets: advancedElements,
+  },
+  {
+    title: '布局组件',
+    widgets: layouts,
+  },
+  {
+    title: '模板',
+    widgets: saves,
+  },
+];
 
-result = result.map(list =>
-  list.map(item => ({
-    ...item,
-    setting: { ...commonSettings, ...item.setting },
-  })),
-);
-
-export default result;
+// result = result.map(item => ({
+//   ...item,
+//   widgets: { ...commonSettings, ...item.setting },
+// }));

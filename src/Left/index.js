@@ -1,57 +1,37 @@
 import React, { useEffect } from 'react';
-import allSettings from '../Settings';
+import { defaultSettings, commonSettings } from '../Settings';
 import './index.css';
 import Element from './Element';
 
-const [elements, advancedElements, layouts, saves] = allSettings;
-
 const Left = ({ saveList, setSaveList, ...rest }) => {
-  // useEffect(() => {
-  //   setSaveList(saves);
-  // }, []); // eslint-disable-line
+  useEffect(() => {}, []); // eslint-disable-line
 
   return (
     <div className="left-layout w5-l w4">
-      <p className="f6 b">基础组件</p>
-      <ul className="pl0">
-        {elements.map((ele, idx) => {
+      {Array.isArray(defaultSettings) ? (
+        defaultSettings.map((item, idx) => {
           return (
-            <li key={idx.toString()} className="left-item">
-              <Element {...ele} {...rest} key={idx.toString()} />
-            </li>
+            <div key={idx}>
+              <p className="f6 b">{item.title}</p>
+              <ul className="pl0">
+                {Array.isArray(item.widgets) ? (
+                  item.widgets.map((widget, idx) => {
+                    return (
+                      <li key={idx.toString()} className="left-item">
+                        <Element {...widget} {...rest} key={idx.toString()} />
+                      </li>
+                    );
+                  })
+                ) : (
+                  <div>此处配置有误</div>
+                )}
+              </ul>
+            </div>
           );
-        })}
-      </ul>
-      <p className="f6 b">复杂组件</p>
-      <ul className="pl0">
-        {advancedElements.map((ele, idx) => {
-          return (
-            <li key={idx.toString()} className="left-item">
-              <Element {...ele} {...rest} key={idx.toString()} />
-            </li>
-          );
-        })}
-      </ul>
-      <p className="f6 b">布局组件</p>
-      <ul className="pl0">
-        {layouts.map((ele, idx) => {
-          return (
-            <li key={idx.toString()} className="left-item">
-              <Element {...ele} {...rest} key={idx.toString()} />
-            </li>
-          );
-        })}
-      </ul>
-      <p className="f6 b">模板</p>
-      <ul className="pl0">
-        {saveList.map((ele, idx) => {
-          return (
-            <li key={idx.toString()} className="left-item">
-              <Element {...ele} {...rest} key={idx.toString()} />
-            </li>
-          );
-        })}
-      </ul>
+        })
+      ) : (
+        <div>配置错误：Setting不是数组</div>
+      )}
     </div>
   );
 };

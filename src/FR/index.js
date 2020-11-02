@@ -1,12 +1,17 @@
 import React from 'react';
-import { useGlobalProps, useStore } from '../hooks';
+import { useStore } from '../hooks';
 import RenderChildren from './RenderChildren';
 import RenderField from './RenderField';
 import Wrapper from './Wrapper';
 
 const FR = ({ id = '#', preview = false }) => {
-  const { onItemChange, onFlattenChange, flatten } = useStore();
-  const { displayType, column } = useGlobalProps();
+  const {
+    onItemChange,
+    onFlattenChange,
+    flatten,
+    displayType,
+    column,
+  } = useStore();
   const item = flatten[id];
   if (!item) return null;
 

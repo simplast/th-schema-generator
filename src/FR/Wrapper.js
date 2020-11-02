@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import './Wrapper.css';
-import { useGlobal, useGlobalProps, useStore } from '../hooks';
+import { useGlobal, useStore } from '../hooks';
 import { copyItem, getKeyFromUniqueId, dropItem } from '../utils';
 import { DeleteOutlined, CopyOutlined, DragOutlined } from '@ant-design/icons';
 import { useDrag, useDrop } from 'react-dnd';
@@ -13,9 +13,14 @@ export default function Wrapper({
   style,
 }) {
   const [position, setPosition] = useState();
-  const { flatten, onItemChange, onFlattenChange } = useStore();
+  const {
+    flatten,
+    onItemChange,
+    onFlattenChange,
+    selected,
+    hovering,
+  } = useStore();
   const setGlobal = useGlobal();
-  const { selected, hovering } = useGlobalProps();
   const { schema } = item;
   const { type } = schema;
   const boxRef = useRef(null);

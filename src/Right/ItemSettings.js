@@ -1,18 +1,25 @@
 import React from 'react';
 import FRWrapper from '../FRWrapper';
-import { useGlobalProps, useStore } from '../hooks';
+import { useStore } from '../hooks';
 import { widgets } from '../widgets/antd';
 import IdInput from '../widgets/antd/idInput';
 import PercentSlider from '../widgets/antd/percentSlider';
-import ALL from '../Settings';
+import { defaultSettings, commonSettings } from '../Settings';
 import { getWidgetName } from '../mapping';
 import { getKeyFromUniqueId } from '../utils';
 
-const elements = [...ALL[0], ...ALL[1], ...ALL[2]]; // 前三项是所有的组件
+let widgetList = [];
+defaultSettings.forEach(setting => {
+  // TODO: 这里要判断一下否则会crash
+  const _widgets = setting.widgets;
+  const basicWidgets = _widgets
+    .filter(item => item.widget)
+    .map(b => ({ ...b, setting: { ...commonSettings, ...b.setting } }));
+  widgetList = [...widgetList, ...basicWidgets];
+});
 
 export default function ItemSettings() {
-  const { flatten, onItemChange } = useStore();
-  const { selected } = useGlobalProps();
+  const { selected, flatten, onItemChange } = useStore();
 
   let settingSchema = {};
   let settingData = {};
@@ -40,7 +47,7 @@ export default function ItemSettings() {
     }
     if (widgetName) {
       // const name = getKeyFromUniqueId(selected);
-      const element = elements.find(e => e.widget === widgetName);
+      const element = widgetList.find(e => e.widget === widgetName);
       const schemaNow = element.setting;
       settingSchema = {
         schema: {

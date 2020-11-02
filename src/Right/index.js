@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useGlobalProps, useSet } from '../hooks';
+import { useStore, useSet } from '../hooks';
 import { RightOutlined } from '@ant-design/icons';
 import './index.css';
 import ItemSettings from './ItemSettings';
@@ -13,7 +13,7 @@ export default function Right() {
     showRight: true,
     showItemSettings: false,
   });
-  const { selected } = useGlobalProps();
+  const { selected } = useStore();
   const { showRight, showItemSettings } = state;
 
   const toggleRight = () => setState({ showRight: !showRight });

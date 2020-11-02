@@ -61,10 +61,6 @@ function App(
   { defaultValue, templates, submit, transformer, extraButtons },
   ref,
 ) {
-  const initGlobal = {
-    displayType: 'row',
-  };
-
   let transformFrom = a => a;
   let transformTo = a => a;
   try {
@@ -78,12 +74,14 @@ function App(
 
   const [state, setState] = useSet({
     formData: {},
-    schema: {},
-    isNewVersion: true, // 用schema字段，还是用propsSchema字段，这是一个问题
-    selected: undefined, // 被选中的$id, 如果object/array的内部，以首字母0标识
+    frProps: {
+      displayType: 'row',
+    }, // form-render 的全局props等
     hovering: undefined, // 目前没有用到
+    isNewVersion: true, // 用schema字段，还是用propsSchema字段，这是一个问题
     preview: false, // preview = false 是编辑模式
-    ...initGlobal, // form-render 的全局props等
+    schema: {},
+    selected: undefined, // 被选中的$id, 如果object/array的内部，以首字母0标识
   });
 
   // 收口点 propsSchema 到 schema 的转换 (一共3处，其他两个是 importSchema 和 setValue，在 FRWrapper 文件)
@@ -101,17 +99,18 @@ function App(
   }, [defaultValue]);
 
   const {
-    schema,
     formData,
-    preview,
-    selected,
+    frProps,
     hovering,
     isNewVersion,
-    ...rest
+    preview,
+    schema,
+    selected,
   } = state;
 
-  const { displayType } = rest;
+  const { displayType } = frProps;
   const showDescIcon = displayType === 'row' ? true : false;
+  const _frProps = { ...frProps, showDescIcon };
 
   const onChange = data => {
     setState({ formData: data });
@@ -125,33 +124,36 @@ function App(
 
   const _mapping = { ...mapping, array: 'listEditor' };
 
-  const globalProps = {
+  const rootState = {
     preview,
-    setState,
     simple: false,
     mapping: _mapping,
     widgets,
     selected,
     hovering,
-    ...rest,
-    showDescIcon,
   };
 
-  const FRProps = {
-    schema,
-    formData,
-    onChange,
-    onSchemaChange,
+  const userProps = {
     templates,
     submit,
     transformFrom,
     transformTo,
     isNewVersion,
     extraButtons,
-    ...globalProps,
   };
 
-  return <FRWrapper ref={ref} {...FRProps} />;
+  const allProps = {
+    schema,
+    formData,
+    onChange,
+    setGlobal: setState,
+    onSchemaChange,
+    ...rootState, // 顶层的state
+    userProps, // 用户传入的props
+    frProps: _frProps, // fr顶层的props
+  };
+
+  return <FRWrapper ref={ref} {...allProps} />;
 }
 
 export default forwardRef(App);

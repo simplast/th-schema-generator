@@ -1,5 +1,5 @@
 import React from 'react';
-import { useGlobal, useGlobalProps, useStore } from '../hooks';
+import { useGlobal, useStore } from '../hooks';
 import { addItem } from '../utils';
 import nanoid from 'nanoid';
 import { useDrag } from 'react-dnd';
@@ -26,8 +26,7 @@ const Element = ({ text, name, schema }) => {
     }),
   });
   const setGlobal = useGlobal();
-  const { selected } = useGlobalProps();
-  const { flatten, onFlattenChange } = useStore();
+  const { selected, flatten, onFlattenChange } = useStore();
 
   const handleElementClick = () => {
     const { newId, newFlatten } = addItem({ selected, name, schema, flatten });

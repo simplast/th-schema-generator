@@ -2,30 +2,24 @@ import React from 'react';
 import FRWrapper from '../FRWrapper';
 import SCHEMA from './GlobalSettingSchema.json';
 // import { widgets } from '../widgets/antd';
-import { useGlobalProps } from '../hooks';
+import { useStore, useGlobal } from '../hooks';
 
 export default function ItemSettings() {
-  const globalProps = useGlobalProps();
+  const store = useStore();
+  const setGlobal = useGlobal();
 
-  const {
-    hovering,
-    mapping,
-    preview,
-    selected,
-    setState,
-    widgets,
-    ...rest
-  } = globalProps;
+  const { widgets, frProps } = store;
+  // TODO: 这里还要去掉点，直接拿是不是更好
 
-  const onDataChange = data => {
-    setState(state => ({ ...state, ...data }));
+  const onDataChange = frProps => {
+    setGlobal({ frProps });
   };
 
   return (
     <div style={{ paddingRight: 24 }}>
       <FRWrapper
         schema={SCHEMA}
-        formData={rest}
+        formData={frProps}
         onChange={onDataChange}
         displayType="row"
         showDescIcon
