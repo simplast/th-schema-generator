@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { defaultSettings, commonSettings } from '../Settings';
+import { defaultSettings } from '../Settings';
 import './index.css';
 import Element from './Element';
 

@@ -69,6 +69,8 @@ export default function ItemSettings() {
     percentSlider: PercentSlider,
   };
 
+  // TODO2: 这边开放
+
   return (
     <div style={{ paddingRight: 24 }}>
       <FRWrapper

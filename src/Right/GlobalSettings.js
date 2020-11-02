@@ -5,11 +5,8 @@ import SCHEMA from './GlobalSettingSchema.json';
 import { useStore, useGlobal } from '../hooks';
 
 export default function ItemSettings() {
-  const store = useStore();
+  const { widgets, frProps } = useStore();
   const setGlobal = useGlobal();
-
-  const { widgets, frProps } = store;
-  // TODO: 这里还要去掉点，直接拿是不是更好
 
   const onDataChange = frProps => {
     setGlobal({ frProps });

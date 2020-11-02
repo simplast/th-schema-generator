@@ -12,16 +12,8 @@ const RenderField = ({
   children,
 }) => {
   const { schema, data } = item;
-  const {
-    onItemChange,
-    flatten,
-    displayType,
-    showDescIcon,
-    showValidate,
-    labelWidth,
-    widgets,
-    mapping,
-  } = useStore();
+  const { onItemChange, flatten, widgets, mapping, frProps = {} } = useStore();
+  const { labelWidth, displayType, showDescIcon, showValidate } = frProps;
   const { type, title, description, required } = schema;
   const isRequired = required && required.length > 0;
 
