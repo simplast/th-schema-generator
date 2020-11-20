@@ -136,6 +136,15 @@ function Wrapper(
   let displaySchemaString = '';
   try {
     const _schema = idToSchema(flattenWithData, '#', true);
+    if (frProps && frProps.column) {
+      _schema['ui:column'] = frProps.column;
+    }
+    if (frProps && frProps.displayType) {
+      _schema['ui:displayType'] = frProps.displayType;
+    }
+    if (frProps && frProps.showDescIcon) {
+      _schema['ui:showDescIcon'] = frProps.showDescIcon;
+    }
     displaySchema = transformTo({ schema: _schema, ...frProps });
     if (!isNewVersion) {
       displaySchema = newSchemaToOld(displaySchema);
