@@ -286,6 +286,7 @@ function Wrapper(
                 </Button> */}
             </div>
             <div className="dnd-container">
+              <div style={{ height: preview ? 33 : 0 }}></div>
               <FR preview={preview} />
             </div>
           </div>
