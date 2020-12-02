@@ -4,7 +4,13 @@ import { useStore } from '../hooks';
 import { widgets } from '../widgets/antd';
 import IdInput from '../widgets/antd/idInput';
 import PercentSlider from '../widgets/antd/percentSlider';
-import { defaultSettings, defaultCommonSettings, elements } from '../Settings';
+import {
+  defaultSettings,
+  defaultCommonSettings,
+  elements,
+  advancedElements,
+  layouts,
+} from '../Settings';
 import { getWidgetName } from '../mapping';
 import { isObject } from '../utils';
 
@@ -42,7 +48,7 @@ export default function ItemSettings() {
 
   // 算widgetList
   const _settings = Array.isArray(settings)
-    ? [...settings, { widgets: elements }] // TODO: 补上基础组件，用于运算
+    ? [...settings, { widgets: [...elements, ...advancedElements, ...layouts] }] // TODO: 不是最优解
     : defaultSettings;
   const _commonSettings = isObject(commonSettings)
     ? commonSettings

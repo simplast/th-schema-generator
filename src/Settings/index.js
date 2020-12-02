@@ -334,7 +334,7 @@ export const elements = [
   },
 ];
 
-const advancedElements = [
+export const advancedElements = [
   {
     text: '日期范围',
     name: 'dateRange',
@@ -391,7 +391,7 @@ const advancedElements = [
   },
 ];
 
-const layouts = [
+export const layouts = [
   {
     text: 'object',
     name: 'object',
@@ -490,7 +490,7 @@ export const defaultSettings = [
     title: '基础组件',
     widgets: elements,
     show: true,
-    useCommon: true, // 是否将common
+    useCommon: true, // TODO: 是否将common
   },
   {
     title: '高级组件',
