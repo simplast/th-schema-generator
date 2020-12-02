@@ -41,7 +41,7 @@ export const defaultCommonSettings = {
 
 // widget 用于schema中每个元素对应的右侧配置知道用哪个setting
 
-const elements = [
+export const elements = [
   {
     text: '输入框',
     name: 'input',
@@ -489,6 +489,8 @@ export const defaultSettings = [
   {
     title: '基础组件',
     widgets: elements,
+    show: true,
+    useCommon: true, // 是否将common
   },
   {
     title: '高级组件',
@@ -503,3 +505,34 @@ export const defaultSettings = [
     widgets: saves,
   },
 ];
+
+export const defaultGlobalSettings = {
+  type: 'object',
+  properties: {
+    column: {
+      title: '整体布局',
+      type: 'string',
+      enum: [1, 2, 3],
+      enumNames: ['一行一列', '一行二列', '一行三列'],
+      'ui:options': {
+        placeholder: '默认一行一列',
+      },
+    },
+    labelWidth: {
+      title: '标签宽度',
+      type: 'number',
+      'ui:widget': 'slider',
+      max: 300,
+      'ui:options': {
+        hideNumber: true,
+      },
+    },
+    displayType: {
+      title: '标签展示模式',
+      type: 'string',
+      enum: ['row', 'column'],
+      enumNames: ['同行', '单独一行'],
+      'ui:widget': 'radio',
+    },
+  },
+};

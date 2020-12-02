@@ -1,12 +1,16 @@
 import React from 'react';
 import FRWrapper from '../FRWrapper';
-import SCHEMA from './GlobalSettingSchema.json';
+import { defaultGlobalSettings } from '../Settings';
 // import { widgets } from '../widgets/antd';
 import { useStore, useGlobal } from '../hooks';
 
 export default function ItemSettings() {
-  const { widgets, frProps } = useStore();
+  const { widgets, frProps, userProps } = useStore();
   const setGlobal = useGlobal();
+  const globalSettings =
+    userProps && userProps.globalSettings
+      ? userProps.globalSettings
+      : defaultGlobalSettings;
 
   const onDataChange = frProps => {
     setGlobal({ frProps });
@@ -15,7 +19,7 @@ export default function ItemSettings() {
   return (
     <div style={{ paddingRight: 24 }}>
       <FRWrapper
-        schema={SCHEMA}
+        schema={{ schema: globalSettings }}
         formData={frProps}
         onChange={onDataChange}
         widgets={widgets}

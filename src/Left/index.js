@@ -8,12 +8,14 @@ const Left = ({ saveList, setSaveList, ...rest }) => {
   const { userProps = {} } = useStore();
   const { settings } = userProps;
   const _settings = Array.isArray(settings) ? settings : defaultSettings;
-  useEffect(() => {}, []); // eslint-disable-line
 
   return (
     <div className="left-layout w5-l w4">
       {Array.isArray(_settings) ? (
         _settings.map((item, idx) => {
+          if (item && item.show === false) {
+            return null;
+          }
           return (
             <div key={idx}>
               <p className="f6 b">{item.title}</p>

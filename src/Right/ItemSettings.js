@@ -4,9 +4,9 @@ import { useStore } from '../hooks';
 import { widgets } from '../widgets/antd';
 import IdInput from '../widgets/antd/idInput';
 import PercentSlider from '../widgets/antd/percentSlider';
-import { defaultSettings, defaultCommonSettings } from '../Settings';
+import { defaultSettings, defaultCommonSettings, elements } from '../Settings';
 import { getWidgetName } from '../mapping';
-import { getKeyFromUniqueId } from '../utils';
+import { isObject } from '../utils';
 
 export default function ItemSettings() {
   const { selected, flatten, onItemChange, userProps = {} } = useStore();
@@ -41,8 +41,10 @@ export default function ItemSettings() {
   };
 
   // 算widgetList
-  const _settings = Array.isArray(settings) ? settings : defaultSettings;
-  const _commonSettings = Array.isArray(commonSettings)
+  const _settings = Array.isArray(settings)
+    ? [...settings, { widgets: elements }] // TODO: 补上基础组件，用于运算
+    : defaultSettings;
+  const _commonSettings = isObject(commonSettings)
     ? commonSettings
     : defaultCommonSettings;
   const widgetList = getWidgetList(_settings, _commonSettings);

@@ -28,6 +28,7 @@ function App(
     extraButtons,
     settings,
     commonSettings,
+    globalSettings,
   },
   ref,
 ) {
@@ -112,6 +113,7 @@ function App(
     extraButtons,
     settings,
     commonSettings,
+    globalSettings,
   };
 
   const allProps = {

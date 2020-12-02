@@ -1,5 +1,11 @@
 # Change Log
 
+### 1.0.0
+
+- [!] 字段 propsSchema 和 schema 的兼容
+- [+] settings & commonSettings & globalSettings 可以自定义
+- [!] 内部优化 context 结构，优化 props 传输
+
 ### 0.5.7
 
 - [!] 样式修复，desc 的气泡不被遮住
