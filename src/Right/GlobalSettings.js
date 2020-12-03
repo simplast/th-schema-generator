@@ -1,36 +1,30 @@
 import React from 'react';
 import FRWrapper from '../FRWrapper';
-import SCHEMA from './GlobalSettingSchema.json';
+import { defaultGlobalSettings } from '../Settings';
 // import { widgets } from '../widgets/antd';
-import { useGlobalProps } from '../hooks';
+import { useStore, useGlobal } from '../hooks';
 
 export default function ItemSettings() {
-  const globalProps = useGlobalProps();
+  const { widgets, frProps, userProps } = useStore();
+  const setGlobal = useGlobal();
+  const globalSettings =
+    userProps && userProps.globalSettings
+      ? userProps.globalSettings
+      : defaultGlobalSettings;
 
-  const {
-    hovering,
-    mapping,
-    preview,
-    selected,
-    setState,
-    widgets,
-    ...rest
-  } = globalProps;
-
-  const onDataChange = data => {
-    setState(state => ({ ...state, ...data }));
+  const onDataChange = frProps => {
+    setGlobal({ frProps });
   };
 
   return (
     <div style={{ paddingRight: 24 }}>
       <FRWrapper
-        schema={SCHEMA}
-        formData={rest}
+        schema={{ schema: globalSettings }}
+        formData={frProps}
         onChange={onDataChange}
-        displayType="row"
-        showDescIcon
         widgets={widgets}
         preview={true}
+        frProps={{ displayType: 'column', showDescIcon: true }}
       />
     </div>
   );

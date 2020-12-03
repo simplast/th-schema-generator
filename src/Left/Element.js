@@ -1,10 +1,11 @@
 import React from 'react';
-import { useGlobal, useGlobalProps, useStore } from '../hooks';
+import { useGlobal, useStore } from '../hooks';
 import { addItem } from '../utils';
 import nanoid from 'nanoid';
 import { useDrag } from 'react-dnd';
+import './Element.css';
 
-const Element = ({ text, name, schema }) => {
+const Element = ({ text, name, schema, icon }) => {
   const [{ isDragging }, dragRef] = useDrag({
     item: {
       type: 'box',
@@ -26,8 +27,7 @@ const Element = ({ text, name, schema }) => {
     }),
   });
   const setGlobal = useGlobal();
-  const { selected } = useGlobalProps();
-  const { flatten, onFlattenChange } = useStore();
+  const { selected, flatten, onFlattenChange } = useStore();
 
   const handleElementClick = () => {
     const { newId, newFlatten } = addItem({ selected, name, schema, flatten });
@@ -36,10 +36,19 @@ const Element = ({ text, name, schema }) => {
   };
 
   return (
-    <div ref={dragRef} className="left-element" onClick={handleElementClick}>
-      {text}
+    <div ref={dragRef}>
+      <WidgetUI text={text} icon={icon} onClick={handleElementClick} />
     </div>
   );
 };
 
 export default Element;
+
+// 目前没有用icon，但是可以补上
+const WidgetUI = ({ onClick, text, icon }) => {
+  return (
+    <li className="left-item" onClick={onClick}>
+      {text}
+    </li>
+  );
+};

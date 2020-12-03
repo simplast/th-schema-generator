@@ -1,12 +1,12 @@
 import React from 'react';
-import { useGlobalProps, useStore } from '../hooks';
+import { useStore } from '../hooks';
 import RenderChildren from './RenderChildren';
 import RenderField from './RenderField';
 import Wrapper from './Wrapper';
 
 const FR = ({ id = '#', preview = false }) => {
-  const { onItemChange, onFlattenChange, flatten } = useStore();
-  const { displayType, column } = useGlobalProps();
+  const { flatten, frProps = {} } = useStore();
+  const { displayType, column } = frProps;
   const item = flatten[id];
   if (!item) return null;
 
@@ -113,7 +113,7 @@ const FR = ({ id = '#', preview = false }) => {
     return (
       <Wrapper style={columnStyle} $id={id} item={item}>
         <div
-          className={`${containerClass} h-100 f5 black-40 flex items-center justify-center`}
+          className={`${containerClass} h-100 f4 black-40 flex items-center justify-center`}
         >
           点击/拖拽左侧栏的组件进行添加
         </div>

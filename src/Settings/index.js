@@ -1,8 +1,8 @@
 // 只需写配置，方便可扩展
-const commonSettings = {
+export const defaultCommonSettings = {
   $id: {
     title: 'ID',
-    description: '数据存储的名称，请写英文，不能为空',
+    description: '数据存储的名称/英文/必填',
     type: 'string',
     'ui:widget': 'idInput',
   },
@@ -41,7 +41,7 @@ const commonSettings = {
 
 // widget 用于schema中每个元素对应的右侧配置知道用哪个setting
 
-const elements = [
+export const elements = [
   {
     text: '输入框',
     name: 'input',
@@ -177,14 +177,14 @@ const elements = [
     },
     setting: {
       default: {
-        title: '默认是否',
+        title: '是否默认勾选',
         type: 'boolean',
       },
     },
   },
   {
     text: '是否switch',
-    name: 'checkbox',
+    name: 'switch',
     widget: 'switch',
     schema: {
       title: '是否选择',
@@ -193,7 +193,7 @@ const elements = [
     },
     setting: {
       default: {
-        title: '默认是否',
+        title: '是否默认开启',
         type: 'boolean',
       },
     },
@@ -334,7 +334,7 @@ const elements = [
   },
 ];
 
-const advancedElements = [
+export const advancedElements = [
   {
     text: '日期范围',
     name: 'dateRange',
@@ -391,7 +391,7 @@ const advancedElements = [
   },
 ];
 
-const layouts = [
+export const layouts = [
   {
     text: 'object',
     name: 'object',
@@ -485,13 +485,54 @@ const saves = [
   },
 ];
 
-let result = [elements, advancedElements, layouts, saves];
+export const defaultSettings = [
+  {
+    title: '基础组件',
+    widgets: elements,
+    show: true,
+    useCommon: true, // TODO: 是否将common
+  },
+  {
+    title: '高级组件',
+    widgets: advancedElements,
+  },
+  {
+    title: '布局组件',
+    widgets: layouts,
+  },
+  {
+    title: '模板',
+    widgets: saves,
+  },
+];
 
-result = result.map(list =>
-  list.map(item => ({
-    ...item,
-    setting: { ...commonSettings, ...item.setting },
-  })),
-);
-
-export default result;
+export const defaultGlobalSettings = {
+  type: 'object',
+  properties: {
+    column: {
+      title: '整体布局',
+      type: 'string',
+      enum: [1, 2, 3],
+      enumNames: ['一行一列', '一行二列', '一行三列'],
+      'ui:options': {
+        placeholder: '默认一行一列',
+      },
+    },
+    labelWidth: {
+      title: '标签宽度',
+      type: 'number',
+      'ui:widget': 'slider',
+      max: 300,
+      'ui:options': {
+        hideNumber: true,
+      },
+    },
+    displayType: {
+      title: '标签展示模式',
+      type: 'string',
+      enum: ['row', 'column'],
+      enumNames: ['同行', '单独一行'],
+      'ui:widget': 'radio',
+    },
+  },
+};

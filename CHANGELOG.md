@@ -1,5 +1,24 @@
 # Change Log
 
+### 1.0.0
+
+- [!] 字段 propsSchema 和 schema 的兼容
+- [+] settings & commonSettings & globalSettings 可以自定义
+- [!] 内部优化 context 结构，优化 props 传输
+- [+] widgets 入参（和 `form-render` 一样），提供自定义组件入口
+
+### 0.5.7
+
+- [!] 样式修复，desc 的气泡不被遮住
+
+### 0.5.6
+
+- [!] 打个补丁，将 ui 相关 props 放到 schema 中, 是对 FR 0.8.11 版本的兼容
+
+### 0.5.5
+
+- [!] 解决了一个内部方法替换后导致右侧栏数据失效的问题
+
 ### 0.5.3
 
 - [+] `extraButtons` 这个数组的 item 的值可以是 true/false，用于去掉默认按钮，例如
