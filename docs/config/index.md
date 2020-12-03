@@ -134,6 +134,36 @@ import Generator, {
 }
 ```
 
+### widgets
+
+- type: 'object'
+
+使用方法可参见[form-render 官方文档](https://x-render.gitee.io/form-render/config/props#widgets) 的 widgets 入参，用法相同。也可见完整[demo](/demo#左右侧栏配置--自定义组件)
+
+简单的说：
+
+1. 写一个自定义组件
+
+```js
+const A = () => <div>hello</div>;
+```
+
+2. 注入到 fr-generator
+
+```js
+<FR widgets={{ A }} />
+```
+
+3. schema 中使用, settings 的配置不赘述看个样例能懂
+
+```json
+{
+  "title": "自定义组件",
+  "type": "string",
+  "ui:widget": "A"
+}
+```
+
 ## 方法
 
 ### getValue
