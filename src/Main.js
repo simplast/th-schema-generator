@@ -2,7 +2,7 @@ import React, { useEffect, forwardRef } from 'react';
 import { useSet } from './hooks';
 // import SCHEMA from './json/basic.json';
 import FRWrapper from './FRWrapper';
-import { widgets } from './widgets/antd';
+import { widgets as defaultWidgets } from './widgets/antd';
 import { mapping } from './mapping';
 import './atom.css';
 import './Main.css';
@@ -29,6 +29,7 @@ function App(
     settings,
     commonSettings,
     globalSettings,
+    widgets = {},
   },
   ref,
 ) {
@@ -99,7 +100,7 @@ function App(
     preview,
     simple: false,
     mapping: _mapping,
-    widgets,
+    widgets: { ...defaultWidgets, ...widgets },
     selected,
     hovering,
   };
