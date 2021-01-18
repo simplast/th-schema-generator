@@ -837,7 +837,7 @@ function toKey(value) {
   return result == '0' && 1 / value == -INFINITY ? '-0' : result;
 }
 
-const reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/;
+const reIsDeepProp = /#\/.+\//;
 const reIsPlainProp = /^\w*$/;
 
 function isKey(value, object) {
