@@ -1,5 +1,5 @@
 {
-  "name": "fr-generator",
+  "name": "th-fr-generator",
   "version": "1.0.0",
   "scripts": {
     "start": "dumi dev",

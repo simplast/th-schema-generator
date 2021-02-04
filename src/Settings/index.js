@@ -389,6 +389,17 @@ export const advancedElements = [
     },
     setting: {},
   },
+  {
+    text: '文件上传',
+    name: 'upload',
+    widget: 'upload',
+    schema: {
+      title: '文件上传',
+      type: 'string:upload',
+      format: 'upload',
+    },
+    setting: {},
+  },
 ];
 
 export const layouts = [
@@ -433,6 +444,21 @@ export const layouts = [
             type: 'boolean',
           },
         },
+      },
+    },
+  },
+  {
+    text: '标题',
+    name: 'title',
+    widget: 'title',
+    schema: {
+      title: '此处是标题',
+      type: 'title',
+    },
+    setting: {
+      minItems: {
+        title: '最小长度',
+        type: 'number',
       },
     },
   },

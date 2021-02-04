@@ -33,6 +33,9 @@ const FR = ({ id = '#', preview = false }) => {
   }
 
   switch (schema.type) {
+    case 'title':
+      columnStyle.width = '100%';
+      break;
     case 'object':
       if (schema.title) {
         containerClass += ' ba b--black-20 pt4 pr3 pb2 relative mt3 mb4'; // object的margin bottom由内部元素撑起

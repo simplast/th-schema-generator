@@ -15,6 +15,7 @@ import switch1 from './switch';
 import textarea from './textarea';
 import upload from './upload';
 import input from './input';
+import title from './title';
 
 export const widgets = {
   checkbox,
@@ -34,4 +35,5 @@ export const widgets = {
   switch: switch1,
   textarea,
   upload,
+  title,
 };

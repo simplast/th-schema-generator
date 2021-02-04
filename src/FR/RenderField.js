@@ -16,6 +16,7 @@ const RenderField = ({
   const { labelWidth, displayType, showDescIcon, showValidate } = frProps;
   const { type, title, description, required } = schema;
   const isRequired = required && required.length > 0;
+  console.log(item);
 
   let widgetName = getWidgetName(schema, mapping);
   const customWidget = schema['ui:widget'];
@@ -59,7 +60,6 @@ const RenderField = ({
   if (widgetName === 'checkbox' && displayType === 'row') {
     contentStyle.marginLeft = effectiveLabelWidth;
   }
-
   // TODO: useMemo
   const usefulWidgetProps = {
     disabled: schema['ui:disabled'],
@@ -72,7 +72,7 @@ const RenderField = ({
 
   return (
     <>
-      {schema.title ? (
+      {schema.title && schema.type !== 'title' ? (
         <div className={labelClass} style={labelStyle}>
           <label
             className={`fr-label-title ${

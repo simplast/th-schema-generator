@@ -67,6 +67,7 @@ function Wrapper(
   if (schema) {
     _schema = combineSchema(schema.schema, schema.uiSchema); // TODO: 要不要判断是否都是object
   }
+  console.log(schema);
   const flatten = flattenSchema(_schema);
   const flattenWithData = dataToFlatten(flatten, formData);
 

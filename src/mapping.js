@@ -6,6 +6,7 @@ export const mapping = {
   integer: 'number',
   number: 'number',
   object: 'map',
+  title: 'title',
   'string:upload': 'upload',
   'string:date': 'date',
   'string:dateTime': 'date',
@@ -22,7 +23,6 @@ export const mapping = {
 
 export function getWidgetName(schema, _mapping = mapping) {
   const { type, format, enum: enums, readonly } = schema;
-
   // 如果已经注明了渲染widget，那最好
   if (schema['ui:widget']) {
     return schema['ui:widget'];
