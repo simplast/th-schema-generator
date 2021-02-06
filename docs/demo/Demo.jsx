@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import Generator from 'fr-generator';
+import Generator from 'th-fr-generator';
 import { Button, Modal, Input } from 'antd';
 const { TextArea } = Input;
 

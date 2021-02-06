@@ -21,7 +21,7 @@ npm i fr-generator
 
 ```js
 import React from 'react';
-import Generator from 'fr-generator';
+import Generator from 'th-fr-generator';
 
 const defaultValue = {
   schema: {

@@ -79,7 +79,7 @@ import Generator, {
   defaultSettings,
   defaultCommonSettings,
   defaultGlobalSettings,
-} from 'fr-generator';
+} from 'th-fr-generator';
 ```
 
 基本的配置说明如下：

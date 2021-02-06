@@ -1,5 +1,5 @@
 import React from 'react';
-import Generator, { fromFormily, toFormily } from 'fr-generator';
+import Generator, { fromFormily, toFormily } from 'th-fr-generator';
 import './index.css';
 
 const defaultValue = {

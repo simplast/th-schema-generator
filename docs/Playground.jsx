@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import Generator from 'fr-generator';
+import Generator from 'th-fr-generator';
 import './index.css';
 
 const defaultValue = {
