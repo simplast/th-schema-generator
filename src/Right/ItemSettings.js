@@ -66,7 +66,6 @@ export default function ItemSettings() {
     if (widgetName) {
       // const name = getKeyFromUniqueId(selected);
       const element = widgetList.find(e => e.widget === widgetName) || {}; // 有可能会没有找到
-      debugger;
       const schemaNow = element.setting;
       settingSchema = {
         schema: {
